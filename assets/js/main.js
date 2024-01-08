@@ -30,6 +30,7 @@ const callWeather = () =>{
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
     .then ((response) => response.json())
     .then ((data) =>{
+        console.log(data);
         cityResult.textContent = data.name
         countryResult.textContent = data.sys.country
         temperature = (data.main.temp).toFixed(1)

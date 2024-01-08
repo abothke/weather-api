@@ -36,23 +36,26 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
 .weatherResult{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 75%;
+    justify-content: center;
+    gap: 3rem;
 }
 
 tr{
     display: flex;
     justify-content: space-between;
+    gap: 2rem;
 }
 
 table{
-    width: 100%;
+
+    background: rgba(255, 255, 255, 0.205);
+    padding: 0.5em;
+    border-radius: 5px;
 }
 
 .btn{
@@ -99,5 +102,11 @@ input{
     section{
         width: 90%;
         font-size: 0.8rem; 
+    }
+    .apiResult{
+        margin-bottom: 1.5em;
+    }
+    .apiResult h2{
+        font-size: 1em;
     }
 }
