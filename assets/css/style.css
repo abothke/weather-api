@@ -91,3 +91,13 @@ input{
     padding: 0.5em 1em;
     font-size: 1.2em;
 }
+
+/* Mobile version ab 768px breite */
+@media screen and (max-width: 768px) {
+    body{
+    }
+    section{
+        width: 90%;
+        font-size: 0.8rem; 
+    }
+}
