@@ -2,7 +2,7 @@
 // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
 const apiKey = "acf8bf4b4cccf9e8d7a865ecedf740d5"
-let lat, lon, timezone, localtimeConvH, date
+let lat, lon, timezone, localtimeConvH, date, temperature
 
 const callWeather = () =>{
     const city = document.querySelector("#cityInput").value // Lowercase?
@@ -32,9 +32,10 @@ const callWeather = () =>{
     .then ((data) =>{
         cityResult.textContent = data.name
         countryResult.textContent = data.sys.country
+        temperature = (data.main.temp).toFixed(1)
         weatherResult.innerHTML = `
         <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">
-        <h2>${data.main.temp} °C</h2>
+        <h2>${temperature} °C</h2>
         `
         weatherStatus.textContent = data.weather[0].description
         // Formatierung der Zeit in Stunden, Minuten und Sekunden und hinzufügen einer Null falls die Zahl kleiner als 10 ist. Die Zeit wird in UTC angegeben, deshalb muss die Zeitzone abgezogen werden.
