@@ -2,7 +2,8 @@
 // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
 const apiKey = "acf8bf4b4cccf9e8d7a865ecedf740d5"
-let lat, lon, timezone, localtimeConvH, date, temperature, dateToMs, gmtDate, offsetDate, correctedDate, timer, localTimeInMs, localTimeInS
+let lat, lon, timezone, localtimeConvH, date, temperature, dateToMs, gmtDate, offsetDate, correctedDate, timer, localTimeInMs, localTimeInS, timeInterval
+
 
     localTimeInMs = new Date().getTime();
     localTimeInS = localTimeInMs / 1000;
@@ -21,19 +22,13 @@ const callWeather = () =>{
     const sunrise = document.querySelector("#sunrise")
     const sunset = document.querySelector("#sunset")
     const geoCoords = document.querySelector("#geoCoords")
-
-    // Fetch um longitute und latitude zu bekommen
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`)
-.then((response) => response.json())
-.then ((data) =>{
-    lat = (data[0].lat);
-    lon = (data[0].lon);
-}) // Fetch um Wetterdaten zu bekommen
-.then(() => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+ // Fetch um Wetterdaten zu bekommen
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
     .then ((response) => response.json())
     .then ((data) =>{
         console.log(data);
+        lat = (data.coord.lat);
+        lon = (data.coord.lon);
         cityResult.textContent = data.name
         countryResult.textContent = data.sys.country
         temperature = (data.main.temp).toFixed(1)
@@ -44,16 +39,16 @@ const callWeather = () =>{
         weatherStatus.textContent = data.weather[0].description
         // Formatierung der Zeit in Stunden, Minuten und Sekunden und hinzufügen einer Null falls die Zahl kleiner als 10 ist. Die Zeit wird in UTC angegeben, deshalb muss die Zeitzone abgezogen werden.
 
+        // Ruft bei jedem Klick einen ClearInterval auf um laufende Timer zu stoppen.
+        clearInterval(timeInterval)
+
+        // Setzt direkt einen neuen Interval, damit die Funktion nie stoppt.
         timeInterval = setInterval(() => {
-            console.log(timeInterval);
-            if (timeInterval > 15){
-                clearInterval(timeInterval)
-            }
             localTimeInMs = new Date().getTime();
             localTimeInS = localTimeInMs / 1000;
-            formatTime(localTimeInS, localTime)
-
+            formatTime(localTimeInS, localTime);
         }, 1000);
+
         const formatTime = (time, container) =>{
         const hourConvert = new Date((time + data.timezone) * 1000).getUTCHours()
         const hourFormat = hourConvert < 10 ? `0${hourConvert}` : hourConvert
@@ -64,6 +59,7 @@ const callWeather = () =>{
         const formattedTime = `${hourFormat}:${minuteFormat}:${secondsFormat}`
         container.textContent = formattedTime
         }
+
         formatTime(localTimeInS, localTime)
         windSpeed.textContent = data.wind.speed;
         cloudiness.textContent = data.weather[0].main;
@@ -73,9 +69,7 @@ const callWeather = () =>{
         formatTime(data.sys.sunset, sunset)
         geoCoords.textContent = `Lat: ${data.coord.lat}, Lon: ${data.coord.lon}`
     })
-})
 }
-
 
 
 document.querySelector("#checkWeather").addEventListener("click", callWeather)
