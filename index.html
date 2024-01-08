@@ -7,6 +7,50 @@
         <title>weather-api</title>
     </head>
     <body>
+    <section>
+        <input type="text" name="cityInput" id="cityInput">
+        <button id="checkWeather">Check Weather</button>
+        <div id="apiResult">
+            <h2>Weather in <span id="cityResult"></span></h2>
+            <p id="countryResult"></p>
+            <div id="weatherResult"></div>
+            <p id="weatherStatus"></p>
+        </div>
+        <table id="resultTable">
+        <tr>
+            <td>Local Time</td>
+            <td id="localTime"></td>
+        </tr>
+        <tr>
+            <td>WindSpeed</td>
+            <td id="windSpeed"></td>
+        </tr>
+        <tr>
+            <td>Cloudiness</td>
+            <td id="cloudiness"></td>
+        </tr>
+        <tr>
+            <td>Pressure</td>
+            <td id="pressure"></td>
+        </tr>
+        <tr>
+            <td>Humidity</td>
+            <td id="humidity"></td>
+        </tr>
+        <tr>
+            <td>Sunrise</td>
+            <td id="sunrise"></td>
+        </tr>
+        <tr>
+            <td>Sunset</td>
+            <td id="sunset"></td>
+        </tr>
+        <tr>
+            <td>Geo Coords</td>
+            <td id="geoCoords"></td>
+        </tr>
+        </table>
+    </section>
     <script src="./assets/js/main.js"></script>
     </body>
     </html>
