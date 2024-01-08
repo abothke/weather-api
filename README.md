@@ -20,13 +20,13 @@ Die Hauptfunktion dieses Projekts ist es, verschiedene Wetterdaten anzuzeigen, d
 - Sonnenaufgang und Sonnenuntergang: Zeigt die Zeiten für Sonnenaufgang und Sonnenuntergang an.
 - Geographische Koordinaten: Zeigt die geographischen Koordinaten des aktuellen Standorts an.
 
-### Wetterdaten abrufen
-
-Es gibt eine Funktion, die auf den Klick-Event des Elements mit der ID `checkWeather` hört. Wenn auf dieses Element geklickt wird, wird die Funktion `callWeather` aufgerufen, die die aktuellen Wetterdaten abruft und anzeigt.
-
 ## Verwendung
 
-Um die Wetterdaten für einen bestimmten Ort zu überprüfen, klicken Sie einfach auf das Element mit der ID `checkWeather`.
+Um die Wetterdaten für einen bestimmten Ort zu überprüfen, geben Sie den Namen Ihrer Stadt in das Eingabefeld ein und klicken Sie anschließend auf "Check Weather". Die aktuellen Wetterdaten für die eingegebene Stadt werden dann abgerufen und angezeigt.
+
+## Demo
+
+https://abothke.github.io/weather-api/
 
 ## Authors
 
