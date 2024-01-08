@@ -19,17 +19,17 @@ const callWeather = () =>{
     const sunset = document.querySelector("#sunset")
     const geoCoords = document.querySelector("#geoCoords")
 
+    // Fetch um longitute und latitude zu bekommen
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`)
 .then((response) => response.json())
 .then ((data) =>{
     lat = (data[0].lat);
     lon = (data[0].lon);
-})
+}) // Fetch um Wetterdaten zu bekommen
 .then(() => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
     .then ((response) => response.json())
     .then ((data) =>{
-        console.log(data);
         cityResult.textContent = data.name
         countryResult.textContent = data.sys.country
         weatherResult.innerHTML = `
@@ -37,6 +37,7 @@ const callWeather = () =>{
         <h2>${data.main.temp} °C</h2>
         `
         weatherStatus.textContent = data.weather[0].description
+        // Formatierung der Zeit in Stunden, Minuten und Sekunden und hinzufügen einer Null falls die Zahl kleiner als 10 ist. Die Zeit wird in UTC angegeben, deshalb muss die Zeitzone abgezogen werden.
         const formatTime = (time, container) =>{
         const hourConvert = new Date((time - 3600 + data.timezone ) * 1000).getHours()
         const hourFormat = hourConvert < 10 ? `0${hourConvert}` : hourConvert
@@ -58,6 +59,5 @@ const callWeather = () =>{
     })
 })
 }
-
 
 document.querySelector("#checkWeather").addEventListener("click", callWeather)
