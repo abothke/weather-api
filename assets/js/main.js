@@ -37,27 +37,27 @@ const callWeather = () =>{
         <h2>${data.main.temp} °C</h2>
         `
         weatherStatus.textContent = data.weather[0].description
-        date = new Date((data.dt - 3600 + data.timezone ) * 1000)
-        console.log(date);
-        localtimeConvH = new Date(`${date}`).getHours()
-        localTime.textContent = `${localtimeConvH}:${new Date(data.dt * 1000).getMinutes()}:${new Date(data.dt * 1000).getSeconds()}`
+        const formatTime = (time, container) =>{
+        const hourConvert = new Date((time - 3600 + data.timezone ) * 1000).getHours()
+        const hourFormat = hourConvert < 10 ? `0${hourConvert}` : hourConvert
+        const minuteConvert = new Date(time * 1000).getMinutes()
+        const minuteFormat = minuteConvert < 10 ? `0${minuteConvert}` : minuteConvert
+        const secondsConvert = new Date (time * 1000).getSeconds()
+        const secondsFormat = secondsConvert < 10 ? `0${secondsConvert}` : secondsConvert
+        const formattedTime = `${hourFormat}:${minuteFormat}:${secondsFormat}`
+        container.textContent = formattedTime
+        }
+        formatTime(data.dt, localTime)
         windSpeed.textContent = data.wind.speed;
         cloudiness.textContent = data.weather[0].main;
         pressure.textContent = `${data.main.pressure} hpa`
         humidity.textContent = `${data.main.humidity} %`
-        sunrise.textContent = `${new Date(data.sys.sunrise * 1000).getHours()}:${new Date(data.sys.sunrise * 1000).getMinutes()}:${new Date(data.sys.sunrise * 1000).getSeconds()}`
-        sunset.textContent = `${new Date(data.sys.sunset * 1000).getHours()}:${new Date(data.sys.sunset * 1000).getMinutes()}:${new Date(data.sys.sunset * 1000).getSeconds()}`
-        geoCoords.textContent = `${data.coord.lat},${data.coord.lon}`
+        formatTime(data.sys.sunrise, sunrise)
+        formatTime(data.sys.sunset, sunset)
+        geoCoords.textContent = `Lat: ${data.coord.lat}, Lon: ${data.coord.lon}`
     })
 })
 }
 
 
 document.querySelector("#checkWeather").addEventListener("click", callWeather)
-
-// let dateTestZwei = (1704708328 - 3600) * 1000
-// console.log(dateTestZwei);
-// let dateTest = new Date(dateTestZwei)
-// console.log(1704708328 * 1000);
-// console.log(dateTest);
-// console.log(new Date(`${dateTest}`));

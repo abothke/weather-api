@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto";
+    color: white;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(28,28,28,1) 100%);
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    padding-top: 5em;
+    width: 30%;
+    border-radius: 10px;
+    background: linear-gradient(#78a14a, #285742);
+    padding: 1em;
+}
+
+.apiResult{
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.weatherResult{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+}
+
+tr{
+    display: flex;
+    justify-content: space-between;
+}
+
+table{
+    width: 100%;
+}
+
+.btn{
+font-family: "Roboto";
+transition : 1000ms;
+font-weight: 0;
+font-size: 12px;
+color: #fff;
+background-color: #3a7d7e;
+padding: 5px 30px;
+border: solid #285742 2px;
+box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+border-radius: 10px;
+transform: translateY(0);
+display: flex;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+}
+
+.btn:hover{
+transition : 1000ms;
+padding: 5px 35px;
+transform : translateY(-0px);
+background-color: #3a7d7e;
+color: #f5f8f1;
+border: solid 2px #285742;
+}
+
+input{
+    color: black;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.502);
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+}
