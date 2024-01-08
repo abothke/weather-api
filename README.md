@@ -9,5 +9,5 @@ On the road to be full stack developers...
 
 ## Authors
 
-- [@philipkuerzel](https://github.com/JohannaHaer)
+- [@JohannaHaer](https://github.com/JohannaHaer)
 - [@abothke](https://www.github.com/abothke)
